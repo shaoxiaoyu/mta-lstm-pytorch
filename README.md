@@ -2,7 +2,7 @@
 
 This is a PyTorch implementation of the paper [Topic-to-Essay Generation with Neural Networks](http://ir.hit.edu.cn/~xcfeng/xiaocheng%20Feng's%20Homepage_files/final-topic-essay-generation.pdf) of IJCAI2018.
 
-The original implementation which was written in TensorFlow can be found [here](https://github.com/hit-computer/MTA-LSTM), but it's no longer maintained. Therefore I choose to use PyTorch, which is more straight forward than TensorFlow in my opinion, to re-implement the work.
+MTA-LSTM stands for Multi-Topic-Aware LSTM, ultilizing multi-topic coverage vector which learns the weight of each topic during the decoding process, and is sequentially updated. The original implementation written in TensorFlow can be found [here](https://github.com/hit-computer/MTA-LSTM), but it's out-of-date and is no longer maintained. Therefore I decided to use PyTorch, which is easier and more straight forward than TensorFlow in my opinion, to reimplement the paper.
 
 ## Dataset
 
@@ -19,8 +19,15 @@ The first link are 2 datasets provided by the author of the paper, and the secon
 
 ## Implementation Notes
 
-- Full vocabs were used instead of using only 50000 common words as mentioned in the original paper.
-- Adaptive softmax were adopted instead of cross entropy in order to speed up training.
+- Full vocabs were used instead of using only 50000 common words as the paper did.
+- Adaptive softmax were adopted instead of cross entropy in order to speed up training process.
+- The model was trained on one 1080 ti, and it took 2 days for 100 epochs.
+- Beam Search method is not parallel.
+
+## Usage
+
+1. Run ```data/word2vec.ipynb``` to create pretrained word embedding files.
+2. Run ```mta-lstm.ipynb``` to train the model.
 
 ## Generated Examples
 
